@@ -1,0 +1,1 @@
+* Make help page terminal friendly (plain text / non-html) if UA is curl/wget.

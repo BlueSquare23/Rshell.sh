@@ -1,0 +1,6 @@
+Flask==2.1.1
+Werkzeug==2.1.1
+asposestorage==1.0.2
+flask_expects_json==1.7.0
+jsonschema==4.6.0
+update_db==0.0.1

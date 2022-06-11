@@ -1,0 +1,6 @@
+*.log
+*.env
+*.passwd
+*.misc/
+venv/
+__pycache__/

