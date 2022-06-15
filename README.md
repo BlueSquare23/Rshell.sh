@@ -1,10 +1,12 @@
 # Rshell.sh Reverse Shell Payloads aaS
 
+[Live Site!](https://rshell.sh)
+
 ## Overview / How it works
 
 This project is multi-language reverse shell payload generator written in
-Python3 using the Flask web framework. The point is to make easy to quickly
-pull down reverse shell payloads from the *cloud* ☁️  to your terminal using
+Python3 using the Flask web framework. The point is to make it easy to quickly
+pull reverse shell payloads down from the *cloud* ☁️  to your terminal using
 `curl` or `wget`.
 
 ### Example Usecase
