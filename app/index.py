@@ -24,6 +24,10 @@ def home():
 # Help page.
 @index.route('help', methods=['GET'])
 def help():
+	# If curl or wget return help.txt instead of html help page.
+	if ("curl" in request.headers.get('User-Agent') or 
+		"Wget" in request.headers.get('User-Agent')):
+		return render_template('help.txt')
 	return render_template('help.html')
 
 # Stabilize shell.
@@ -35,6 +39,7 @@ def stabilize():
 
 # Bash route.
 @index.route('<string:ip>/<int:port>', methods=['GET'])
+@index.route('bash/<string:ip>/<int:port>', methods=['GET'])
 def bash(ip, port):
 	quotes_pref = request.args.get("q", str)
 
@@ -45,6 +50,7 @@ def bash(ip, port):
 
 # Python route.
 @index.route('python/<string:ip>/<int:port>', methods=['GET'])
+@index.route('python3/<string:ip>/<int:port>', methods=['GET'])
 def python(ip, port):
 	quotes_pref = request.args.get("q", str)
 
