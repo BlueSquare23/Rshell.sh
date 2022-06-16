@@ -25,9 +25,14 @@
 
 * API Options
 
-	- host:	IPv4_ADDRESS
-	- port: PORT_NUMBER
-	- lang: See, Supported Languages
+	- host:
+		IPv4_ADDRESS
+
+	- port:
+		PORT_NUMBER
+
+	- lang:
+		See, Supported Languages
 
 * Examples
 
