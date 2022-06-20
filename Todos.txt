@@ -1,2 +1,2 @@
-* Implement testing.
+* Make reverse shell type (sh, bash, csh) a GET / API option. 
 
