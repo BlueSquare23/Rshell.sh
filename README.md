@@ -50,7 +50,7 @@ git clone github.com:BlueSquare23/Rshell.sh.git
 
 ```
 cd Rshell.sh
-virtualenv venv				# Virtual Env Optional
+virtualenv venv		# Virtual Env Optional
 source venv/bin/activate	# Virtual Env Optional
 pip3 install -r requirements.txt
 ```
