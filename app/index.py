@@ -1,19 +1,12 @@
 from flask import render_template, Blueprint, request
-from .payload_gen import payload_generator
-import ipaddress
+from .validate_and_generate import payload_generator, valid_ip, valid_port
 
-# Validate IP Addr.
-def valid_ip(address):
-	try: 
-		print(ipaddress.ip_address(address))
-		return True
-	except:
-		return False
-
-# Validate Port.
-def valid_port(port):
-	if isinstance(port, int) and port <= 65535:
-		return True
+# Returns payload.
+def ret_payload(ip, port, shell, quotes_pref):
+	if valid_ip(ip) == True and valid_port(port) == True:
+		return payload_generator(ip, port, "bash", quotes_pref, False)
+	else:
+		return "Invalid IP or Port"
 
 # Main index blueprint / route.
 index = Blueprint("index", __name__)
@@ -31,7 +24,7 @@ def help():
 	return render_template('help.html')
 
 # Stabilize shell.
-@index.route('stabilise', methods=['GET'])
+@index.route('stabilize', methods=['GET'])
 @index.route('reset', methods=['GET'])
 def stabilize():
 	py_stabilise_payload = 'pty=__import__(\"pty\");pty.spawn("/bin/bash")'
@@ -42,49 +35,29 @@ def stabilize():
 @index.route('bash/<string:ip>/<int:port>', methods=['GET'])
 def bash(ip, port):
 	quotes_pref = request.args.get("q", str)
-
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "bash", quotes_pref, False)
-	else:
-		return "Invalid IP or Port"
+	return ret_payload(ip, port, "bash", quotes_pref)
 
 # Python route.
 @index.route('python/<string:ip>/<int:port>', methods=['GET'])
 @index.route('python3/<string:ip>/<int:port>', methods=['GET'])
 def python(ip, port):
 	quotes_pref = request.args.get("q", str)
-
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "python", quotes_pref, False)
-	else:
-		return "Invalid IP or Port"
+	return ret_payload(ip, port, "python", quotes_pref)
 
 # Perl route.
 @index.route('perl/<string:ip>/<int:port>', methods=['GET'])
 def perl(ip, port):
 	quotes_pref = request.args.get("q", str)
-
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "perl", quotes_pref, False)
-	else:
-		return "Invalid IP or Port"
+	return ret_payload(ip, port, "perl", quotes_pref)
 
 # PHP route.
 @index.route('php/<string:ip>/<int:port>', methods=['GET'])
 def php(ip, port):
 	quotes_pref = request.args.get("q", str)
-
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "php", quotes_pref, False)
-	else:
-		return "Invalid IP or Port"
+	return ret_payload(ip, port, "php", quotes_pref)
 
 # Awk route.
 @index.route('awk/<string:ip>/<int:port>', methods=['GET'])
 def awk(ip, port):
 	quotes_pref = request.args.get("q", str)
-
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "php", quotes_pref, False)
-	else:
-		return "Invalid IP or Port"
+	return ret_payload(ip, port, "awk", quotes_pref)

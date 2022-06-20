@@ -2,7 +2,7 @@ from flask import Blueprint, request, make_response, jsonify
 from werkzeug.exceptions import HTTPException
 from jsonschema import ValidationError
 from flask_expects_json import expects_json
-from .payload_gen import payload_generator
+from .validate_and_generate import payload_generator, valid_ip, valid_port
 
 # Blueprinting to allow for modular code.
 api = Blueprint("api", __name__)
@@ -49,7 +49,12 @@ def api_logic():
 
 		supported_langs = ["bash", "python", "perl", "php", "awk"]
 
-		if lang in supported_langs:
-			return payload_generator(ip, port, lang, "n", True)
+		if valid_ip(ip) == True and valid_port(port) == True:
+			if lang in supported_langs:
+				return payload_generator(ip, port, lang, "n", True)
+			else:
+				return {"Error":"Unsupported lang value!"}, 400
+		else:
+			return {"Error":"Invalid IP or Port!"}, 400
 	else:
-		return {"Post":"Failed"}, 400
+		return {"Error":"Post Failed"}, 400
