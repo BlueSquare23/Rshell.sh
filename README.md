@@ -43,7 +43,7 @@ environment.
 * First clone the repo:
 
 ```
-git clone github.com:BlueSquare23/Rshell.sh.git
+git clone https://github.com/BlueSquare23/Rshell.sh
 ```
 
 * Then install the required python modules:
