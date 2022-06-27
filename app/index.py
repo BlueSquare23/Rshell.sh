@@ -2,9 +2,9 @@ from flask import render_template, Blueprint, request
 from .validate_and_generate import payload_generator, valid_ip, valid_port
 
 # Returns payload.
-def ret_payload(ip, port, shell, quotes_pref):
+def ret_payload(ip, port, lang, quotes_pref, shell_pref):
 	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, "bash", quotes_pref, False)
+		return payload_generator(ip, port, lang, quotes_pref, shell_pref, False)
 	else:
 		return "Invalid IP or Port"
 
@@ -35,29 +35,34 @@ def stabilize():
 @index.route('bash/<string:ip>/<int:port>', methods=['GET'])
 def bash(ip, port):
 	quotes_pref = request.args.get("q", str)
-	return ret_payload(ip, port, "bash", quotes_pref)
+	shell_pref = request.args.get("s", str)
+	return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
 
 # Python route.
 @index.route('python/<string:ip>/<int:port>', methods=['GET'])
 @index.route('python3/<string:ip>/<int:port>', methods=['GET'])
 def python(ip, port):
 	quotes_pref = request.args.get("q", str)
-	return ret_payload(ip, port, "python", quotes_pref)
+	shell_pref = request.args.get("s", str)
+	return ret_payload(ip, port, "python", quotes_pref, shell_pref)
 
 # Perl route.
 @index.route('perl/<string:ip>/<int:port>', methods=['GET'])
 def perl(ip, port):
 	quotes_pref = request.args.get("q", str)
-	return ret_payload(ip, port, "perl", quotes_pref)
+	shell_pref = request.args.get("s", str)
+	return ret_payload(ip, port, "perl", quotes_pref, shell_pref)
 
 # PHP route.
 @index.route('php/<string:ip>/<int:port>', methods=['GET'])
 def php(ip, port):
 	quotes_pref = request.args.get("q", str)
-	return ret_payload(ip, port, "php", quotes_pref)
+	shell_pref = request.args.get("s", str)
+	return ret_payload(ip, port, "php", quotes_pref, shell_pref)
 
 # Awk route.
 @index.route('awk/<string:ip>/<int:port>', methods=['GET'])
 def awk(ip, port):
 	quotes_pref = request.args.get("q", str)
-	return ret_payload(ip, port, "awk", quotes_pref)
+	shell_pref = request.args.get("s", str)
+	return ret_payload(ip, port, "awk", quotes_pref, shell_pref)

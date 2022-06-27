@@ -29,8 +29,9 @@ schema = {
 		'host': {'type': 'string'},
 		'port': {'type': 'number'},
 		'lang': {'type': 'string'},
+		'shell': {'type': 'string'},
 	},
-	'required': ['host', 'port', 'lang']
+	'required': ['host', 'port', 'lang', 'shell']
 }
 
 
@@ -46,12 +47,17 @@ def api_logic():
 		ip = poll['host']
 		port = poll['port']
 		lang = poll['lang']
+		shell = poll['shell']
 
 		supported_langs = ["bash", "python", "perl", "php", "awk"]
+		supported_shells = ["bash", "sh", "csh", "ksh", "zsh"]
 
 		if valid_ip(ip) == True and valid_port(port) == True:
 			if lang in supported_langs:
-				return payload_generator(ip, port, lang, "n", True)
+				if shell in supported_shells:
+					return payload_generator(ip, port, lang, "n", shell, True)
+				else:
+					return {"Error": "Unsupported shell value!"}, 400
 			else:
 				return {"Error":"Unsupported lang value!"}, 400
 		else:
