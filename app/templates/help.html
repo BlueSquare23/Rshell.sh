@@ -13,7 +13,9 @@
 <h1>rshell.sh - Help Page</h1>
 <h2>Reverse Shell Payload Microservice</h2>
 <img style="position:fixed; right:30px; top:20px; height:25; width:25; background-color:white" src="static/img/white-hat.png">
+
 <hr>
+
 <a name="SupportedLangs"></a>
 <h3><u>Supported Languages</u></h3>
   <table>
@@ -162,6 +164,16 @@
 	  </td>
 	</tr>
   </table>
+
+<a name="SupportedShells"></a>
+<h3><u>Supported Shells</u></h3>
+<ul>
+<li>Bash</li>
+<li>Csh</li>
+<li>Zsh</li>
+<li>Ksh</li>
+</ul>
+
 <h3><u>GET Parameters</u></h3>
   <table>
 	<tr>
@@ -174,7 +186,13 @@
       <td>q</td>
       <td>y</td>
 	  <td><a href="/10.0.0.1/1234?q=y">rshell.sh/10.0.0.1/1234?q=y</a></td>
-	  <td>Output Wrapped in Single Quotes.</td>
+	  <td>Output wrapped in single quotes.</td>
+	</tr>
+	<tr>
+      <td>s</td>
+      <td>See, <a href="#SupportedShells">Supported Shells</a></td>
+	  <td><a href="/10.0.0.1/1234?s=zsh">rshell.sh/10.0.0.1/1234?s=zsh</a></td>
+	  <td>Type of reverse shell that is sent.</td>
 	</tr>
   </table>
 <h3><u>API Options</u></h3>
@@ -187,19 +205,25 @@
 	<tr>
       <td>host</td>
       <td>IPv4_ADDRESS</td>
-	  <td>IPv4 Address of Remote Host.</td>
+	  <td>IPv4 address of remote host.</td>
 	</tr>
 	<tr>
       <td>port</td>
       <td>PORT_NUMBER</td>
-	  <td>Target Port of Remote Host.</td>
+	  <td>Target port of remote host.</td>
 	</tr>
 	<tr>
       <td>lang</td>
       <td>See, <a href="#SupportedLangs">Supported Langs</a></td>
 	  <td>Reverse shell payload language.</td>
 	</tr>
+	<tr>
+      <td>shell</td>
+      <td>See, <a href="#SupportedShells">Supported Shells</a></td>
+	  <td>Type of reverse shell that is sent.</td>
+	</tr>
   </table>
+
 <h3><u>Tips</u></h3>
 <ul>
 <li>Python Shell Reset</li>
@@ -211,7 +235,9 @@ curl -s rshell.sh/reset
 curl -s rshell.sh/help
 </pre>
 </ul>
+
 <br>
+
 <p style="color: red"><u><b>No Use 4 Bad Hax!!!</b></u></p>
 
 <br>
