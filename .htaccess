@@ -1,0 +1,15 @@
+nly allow access to only a few end-points instead of explicitly denying
+# access to many.
+RewriteEngine On
+RewriteRule "(^|/)(^[\d]{1,3}.[\d]{1,3}.[\d]{1,3}.[\d]{1,3})" - [PT] 
+RewriteRule "(^|/)(^static)" - [PT] 
+RewriteRule "(^|/)(^help)" - [PT] 
+RewriteRule "(^|/)(^api)" - [PT] 
+RewriteRule "(^|/)(^bash)" - [PT] 
+RewriteRule "(^|/)(^python)" - [PT] 
+RewriteRule "(^|/)(^perl)" - [PT] 
+RewriteRule "(^|/)(^php)" - [PT] 
+RewriteRule "(^|/)(^awk)" - [PT] 
+RewriteRule "(^|/)(\^.well-known)" - [PT] 
+RewriteRule "^$" - [PT]
+RewriteRule "^(.*/)?" - [R=404]
