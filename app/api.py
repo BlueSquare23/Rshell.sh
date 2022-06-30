@@ -40,27 +40,32 @@ schema = {
 
 def api_logic():
 
-	if(request.data):
-
-		poll = request.get_json()
-
-		ip = poll['host']
-		port = poll['port']
-		lang = poll['lang']
-		shell = poll['shell']
-
-		supported_langs = ["bash", "python", "perl", "php", "awk"]
-		supported_shells = ["bash", "sh", "csh", "ksh", "zsh"]
-
-		if valid_ip(ip) == True and valid_port(port) == True:
-			if lang in supported_langs:
-				if shell in supported_shells:
-					return payload_generator(ip, port, lang, "n", shell, True)
-				else:
-					return {"Error": "Unsupported shell value!"}, 400
-			else:
-				return {"Error":"Unsupported lang value!"}, 400
-		else:
-			return {"Error":"Invalid IP or Port!"}, 400
-	else:
+	if not request.data:
 		return {"Error":"Post Failed"}, 400
+
+	poll = request.get_json()
+
+	ip = poll['host']
+	port = poll['port']
+	lang = poll['lang']
+	shell = poll['shell']
+
+	supported_langs = ["bash", "python", "perl", "php", "awk"]
+	supported_shells = ["bash", "sh", "csh", "ksh", "zsh"]
+	
+	is_valid_ip = valid_ip(ip)
+	is_valid_port = valid_port(port)
+
+	if (not is_valid_ip) or (not is_valid_port):
+		first = "Invalid IP" if (not is_valid_ip) else ""
+		and_string = " and " if (not is_valid_ip and not is_valid_port) else ""
+		second = "Invalid Port" if (not is_valid_port) else ""
+		return {"Error": first + and_string + second}, 400
+
+	if lang not in supported_langs:
+		return {"Error":"Unsupported lang value!"}, 400
+	if shell not in supported_shells: 		
+		return {"Error": "Unsupported shell value!"}, 400
+
+	return payload_generator(ip, port, lang, "n", shell, True)
+
