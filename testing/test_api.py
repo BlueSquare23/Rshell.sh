@@ -53,7 +53,7 @@ def test_api(app, client):
 	)
 
 	assert response.status_code == 400	# Return's 400 to bad port.
-	assert response.text == '{"Error":"Invalid IP or Port!"}\n'
+	assert response.text == '{"Error":"Invalid Port"}\n'
 
 	# Bad host.
 	response = client.post(
@@ -63,13 +63,13 @@ def test_api(app, client):
 	)
 
 	assert response.status_code == 400	# Return's 400 to bad host.
-	assert response.text == '{"Error":"Invalid IP or Port!"}\n'
+	assert response.text == '{"Error":"Invalid IP"}\n'
 
 	response = client.post(
 		'/api', 
-		data=json.dumps({"host":"wopaguz","port":1234,"lang":"bash", "shell":"bash"}), 
+		data=json.dumps({"host":"1.1.1","port":1111111111234,"lang":"bash", "shell":"bash"}), 
 		content_type='application/json'
 	)
 
 	assert response.status_code == 400	# Return's 400 to bad host.
-	assert response.text == '{"Error":"Invalid IP or Port!"}\n'
+	assert response.text == '{"Error":"Invalid IP and Invalid Port"}\n'
