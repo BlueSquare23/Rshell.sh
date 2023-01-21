@@ -12,7 +12,6 @@ def ret_payload(ip, port, lang, quotes_pref, shell_pref):
 def check_ua():
     if ("curl" in request.headers.get('User-Agent') or 
         "Wget" in request.headers.get('User-Agent')):
-        #return render_template('help.txt')
         return 'shell'
     return
 

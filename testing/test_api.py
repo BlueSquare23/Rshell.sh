@@ -3,9 +3,10 @@ from flask import json
 
 # Test api route.
 def test_api(app, client):
-	# GET Request tests.
-	response = client.get('/api')
-	assert response.status_code == 405	# Return's 405 to GET requests.
+    # Will now return 200's b/c optional help variable path name.
+	## GET Request tests.
+	#response = client.get('/api')
+	#assert response.status_code == 405	# Return's 405 to GET requests.
 
 	# POST Request tests.
 

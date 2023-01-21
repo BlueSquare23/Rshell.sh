@@ -50,8 +50,8 @@ git clone https://github.com/BlueSquare23/Rshell.sh
 
 ```
 cd Rshell.sh
-virtualenv venv		# Virtual Env Optional
-source venv/bin/activate	# Virtual Env Optional
+virtualenv venv             # Virtual Env Optional
+source venv/bin/activate    # Virtual Env Optional
 pip3 install -r requirements.txt
 ```
 
@@ -59,6 +59,18 @@ pip3 install -r requirements.txt
 
 ```
 python3 app.py
+```
+
+### Testing
+
+The test are written using [`pytest`](https://pytest.org/). You can run the
+test code by cd'ing into the project's main directory and running pytest.
+
+```
+cd Rshell.sh
+virtualenv venv             # Virtual Env Optional
+source venv/bin/activate    # Virtual Env Optional
+python3 -m pytest
 ```
 
 ## Technologies
