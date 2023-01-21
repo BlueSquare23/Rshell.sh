@@ -2,7 +2,7 @@ from flask import Blueprint, request, make_response, jsonify
 from werkzeug.exceptions import HTTPException
 from jsonschema import ValidationError
 from flask_expects_json import expects_json
-from .validate_and_generate import payload_generator, valid_ip, valid_port
+from .utils import payload_generator, valid_ip, valid_port
 
 # Blueprinting to allow for modular code.
 api = Blueprint("api", __name__)

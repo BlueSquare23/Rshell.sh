@@ -2,4 +2,3 @@
 	- Test this ^
 * Reduce, refactor, render-down redundant code.
 * Make curl requests for / return term-safe help page.
-

