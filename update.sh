@@ -1,22 +1,24 @@
 #!/usr/bin/env bash
 # This script updates the production deployment of rshell.sh.
 
-# Bash Strict Mode
+# Bash Strict Mode.
 set -eo pipefail
 
 cd ~/public_html/rshell.sh
 
-# Pull Updates
+# Pull Updates.
 git pull
 
-# Source Venv
+# Wipe out old virtual env and start anew.
+rm -rf venv
+python3 -m virtualenv venv
 source venv/bin/activate
 
-# Update Reqs 
+# Install Requirements.
 pip3 install -r requirements.txt
 
-# Run Tests
+# Run Tests.
 python -m pytest -vv
 
-# Restart WebApp
+# Restart WebApp.
 kill -9 `pgrep -f rshell.sh`
