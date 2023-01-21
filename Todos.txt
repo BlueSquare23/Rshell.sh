@@ -1,4 +1,5 @@
 * Make reverse shell type (sh, bash, csh) a GET / API option. 
 	- Test this ^
 * Reduce, refactor, render-down redundant code.
+* Make curl requests for / return term-safe help page.
 
