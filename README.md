@@ -31,7 +31,7 @@ curl rshell.sh/127.0.0.1/1234 | bash
 * PHP
 * Awk
 
-See the project [help page](https://rshell.sh/help) for more information.
+See the project __[help page](https://rshell.sh/help)__ for more information.
 
 ## Dev Site Install / Setup
 
