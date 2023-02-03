@@ -14,7 +14,7 @@ automated remote reverse shell payload generation into their own applications.
 
 ### Example Usecase
 
-* Setup you listener:
+* Setup your netcat listener:
 
 ```
 nc -lvnp 1234
